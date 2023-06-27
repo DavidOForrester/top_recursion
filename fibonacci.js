@@ -14,12 +14,20 @@
 
 console.log(fibs(8));*/
 
-function fibsRec(n) {
-  if(n === 0) {
-    return
-  } 
-  console.log(n)
-  fibsRec(n - 1)
+function fibsRec(n, arr) {
+  // Base cases
+  if (n === 0) {
+    return [0];
+  } else if (n === 1) {
+    return [0, 1];
+  }
+
+  // Recursive case
+  const previousFibonacciNumbers = fibsRec(n - 1, arr);
+  const nextFibonacciNumber = previousFibonacciNumbers[previousFibonacciNumbers.length - 1] + previousFibonacciNumbers[previousFibonacciNumbers.length - 2];
+  return previousFibonacciNumbers.concat([nextFibonacciNumber]);
 }
 
-console.log(fibsRec(8));
+const fibSeq = [];
+
+console.log(fibsRec(8, fibSeq));
